@@ -25,7 +25,16 @@ Please contribute if you listen</code>
   https://www.paypal.com/paypalme/anthonyaudas/
 </a>
 <pre>
-First turn your mp3 into mp4
+1) I have a set of mp3s to upload to Cloudflare. they have a web based admin page, but that is only one at a time.
+ they have an api, so here is a bash script for batch upload
+
+# upload all mp4 files in current dir
+<code>
+  set $key =
+  set $accnt =
+ for f in *.mp4 ; do curl -X POST  -H "X-Auth-Key: $key" -H "X-Auth-Email: taudas@gmail.com"  -F file=@$f https://api.cloudflare.com/client/v4/accounts/$accnt/stream; done
+</code>
+
 Then manage all your files
 Here is the upload script
 And here is the list script
