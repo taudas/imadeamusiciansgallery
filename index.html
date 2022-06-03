@@ -80,24 +80,33 @@ You need your Account Number, API Key, and email address.
 # upload all files
 declare -x ACCOUNT=youraccountnumber
 declare -x KEY=yourapikey
-declare -x EMAIL=youremailahere@gmail.com
+declare -x EMAIL=youremailaddress
 for f in *.mp4 ; \
-do curl -X POST  -F file=@$f https://api.cloudflare.com/client/v4/$ACCOUNT/stream \
+do curl -X POST \
+ -F file=@$f https://api.cloudflare.com/client/v4/$ACCOUNT/stream \
  -H "X-Auth-Key: $KEY" \
  -H "X-Auth-Email: $EMAIL"  ; done
 </code>
 And here is the list script
 <code>
-# list all files
+# get a list of all files
 declare -x ACCOUNT=youraccountnumber
 declare -x KEY=yourapikey
-declare -x EMAIL=youremailahere@gmail.com
-curl  -s -X GET "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/stream"\
- -H "X-Auth-Key: $KEY"\
- -H "X-Auth-Email: $EMAIL"
+declare -x EMAIL=youremailaddress
+curl -s \
+ -X GET "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/stream" \
+ -H "X-Auth-Key: $KEY" \
+ -H "X-Auth-Email: $EMAIL" >allfiles
 </code>
-So now i have a list of uuids
-Use jquery to construct an html fragment
+Use jquery to get the part i need
+<code>
+ cat allfiles | jq -r '.result[].uid'
+</code>
+So now i have a list of uuids, let's construct the html fragment
+<code>
+ cat allfiles | jq -r '.result[].uid' | sed -e 's#\(.*\)#<a href="http://danglingganglion.com/?\1"><img width="20%" src="https://videodelivery.net/\1/thumbnails/thumbnail.jpg"></a>#' >links.html
+</code>
+
 So now how to publish this? - Cloudflare Pages
 One page
 First announce your intentions
