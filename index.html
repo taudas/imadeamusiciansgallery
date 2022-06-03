@@ -5,15 +5,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I made a Musicians Gallery for $6</title>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Style the header */
+    .header {
+      background-color: #f1f1f1;
+      padding: 30px;
+      text-align: center;
+      font-size: 35px;
+    }
+
+    /* Container for flexboxes */
+    .row {
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    /* Create three unequal columns that sits next to each other */
+    .column {
+      padding: 10px;
+      height: 300px; /* Should be removed. Only for demonstration */
+    }
+
+    /* Left and right column */
+    .column.side {
+       -webkit-flex: 1;
+       -ms-flex: 1;
+       flex: 1;
+    }
+
+    /* Middle column */
+    .column.middle {
+      -webkit-flex: 2;
+      -ms-flex: 2;
+      flex: 2;
+    }
+
+    /* Style the footer */
+    .footer {
+      background-color: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media (max-width: 600px) {
+      .row {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+      }
+    }
+    </style>
+
+
 </head>
 <body style="background-color: #e7c9a9">
-  <div>
+  <div class="header">
     <h1>
 
 <code><center>
 I made a Musicians Gallery for $6
    with Cloudflare Stream and Cloudflare Pages
-</center></code></h1>
+</center></code></h1></div>
+<div class="row">
+
+<div class="column side" style="background-color:#aaa;">Column</div>
+  <div class="column middle" style="background-color:#bbb;">
+
+
+
 <p>
 I  was looking for a way to present a set of audio files. I’ve been learning a lot about serverless, and I thought this type of web app would be perfect for that.
 <p>
@@ -69,14 +136,16 @@ First announce your intentions
 Then show the default vid
 Then insert the html fragment with the links and thumbnails
 voila
-<pre>
+<pre></div>
+  <div class="column side" style="background-color:#ccc;">Column</div>
 
 
 
 
 
   </div>
-<div><h1><a href="http://danglingganglion.com">You Must Listen to Dangling Ganglion</a></h1></div>
+
+<div class="footer"><h1><a href="http://danglingganglion.com">You Must Listen to Dangling Ganglion</a></h1></div>
 
 
 
