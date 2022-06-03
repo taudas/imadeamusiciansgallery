@@ -35,23 +35,25 @@ Please contribute if you listen</code>
 <pre>
 1) I have a set of mp3s to upload to Cloudflare. they have a web based admin page, but that is only one at a time.
  they have an api, so here is a bash script for batch upload
+
+You need your Account Number, API Key, and email address.
 <code>
 # upload all files
-declare -x ACCOUNT=61b784ac9a85d0224b0b7559233cc843
-declare -x KEY=28c082d7202db728339151b217f28298ac9e7
-declare -x EMAIL=taudas@gmail.com
+declare -x ACCOUNT=youraccountnumber
+declare -x KEY=yourapikey
+declare -x EMAIL=youremailahere@gmail.com
 for f in *.mp4 ; \
-do curl -X POST  -F file=@$f https://api.cloudflare.com/client/v4/accounts/$accnt/stream \
- -H "X-Auth-Key: $key" \
- -H "X-Auth-Email: taudas@gmail.com"  ; done
+do curl -X POST  -F file=@$f https://api.cloudflare.com/client/v4/$ACCOUNT/stream \
+ -H "X-Auth-Key: $KEY" \
+ -H "X-Auth-Email: $EMAIL"  ; done
 </code>
 
 And here is the list script
 <code>
 # list all files
-declare -x ACCOUNT=61b784ac9a85d0224b0b7559233cc843
-declare -x KEY=28c082d7202db728339151b217f28298ac9e7
-declare -x EMAIL=taudas@gmail.com
+declare -x ACCOUNT=youraccountnumber
+declare -x KEY=yourapikey
+declare -x EMAIL=youremailahere@gmail.com
 curl  -s -X GET "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/stream"\
  -H "X-Auth-Key: $KEY"\
  -H "X-Auth-Email: $EMAIL"
