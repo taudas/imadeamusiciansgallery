@@ -31,7 +31,7 @@
     /* Create three unequal columns that sits next to each other */
     .column {
       padding: 10px;
-      height: 300px; /* Should be removed. Only for demonstration */
+    /*  height: 300px; /* Should be removed. Only for demonstration */
     }
 
     /* Left and right column */
@@ -76,7 +76,7 @@ I made a Musicians Gallery for $6
 </center></code></h1></div>
 <div class="row">
 
-<div class="column side" style="background-color:#aaa;">Column</div>
+<div class="column side" style="background-color:#bbb;"></div>
   <div class="column middle" style="background-color:#bbb;">
 
 
@@ -89,15 +89,7 @@ So here is the challenge: Take a set of audio files and present a playable web i
 I am familiar with Cloudflare Tunnels so I thought I would use Cloudflare Stream for the host. This service consists of two parts - storage and streaming. The storage cost is $5 per kilominute. The streaming cost is $1 per kilominute. So first you establish your content - 1000 minutes of storage for $5/month. Then you enable streaming - 1000 minutes of streaming for $1/month.
 I have 717 minutes stored and I used less than 1000 minutes last month - This cost me $6.
 <p>
-Please contribute if you listen</code>
 
-<form action="https://www.paypal.com/donate" method="post" target="_top">
-<input type="hidden" name="business" value="7ACWGCVBT455L" />
-<input type="hidden" name="no_recurring" value="0" />
-<input type="hidden" name="currency_code" value="USD" />
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-</form>
 
 <pre>
 1) I have a set of mp3s to upload to Cloudflare. they have a web based admin page, but that is only one at a time.
@@ -137,7 +129,19 @@ Then show the default vid
 Then insert the html fragment with the links and thumbnails
 voila
 <pre></div>
-  <div class="column side" style="background-color:#ccc;">Column</div>
+  <div class="column side" style="background-color:#ccc;">
+
+    Please contribute if you listen</code>
+
+    <form action="https://www.paypal.com/donate" method="post" target="_top">
+    <input type="hidden" name="business" value="7ACWGCVBT455L" />
+    <input type="hidden" name="no_recurring" value="0" />
+    <input type="hidden" name="currency_code" value="USD" />
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+
+  </div>
 
 
 
