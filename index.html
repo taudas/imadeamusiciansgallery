@@ -23,23 +23,42 @@ I am familiar with Cloudflare Tunnels so I thought I would use Cloudflare Stream
 I have 717 minutes stored and I used less than 1000 minutes last month - This cost me $6.
 <p>
 Please contribute if you listen</code>
-<a href="https://www.paypal.com/paypalme/anthonyaudas/">
-  https://www.paypal.com/paypalme/anthonyaudas/
-</a><p>
+
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+<input type="hidden" name="business" value="7ACWGCVBT455L" />
+<input type="hidden" name="no_recurring" value="0" />
+<input type="hidden" name="currency_code" value="USD" />
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+
 <pre>
 1) I have a set of mp3s to upload to Cloudflare. they have a web based admin page, but that is only one at a time.
  they have an api, so here is a bash script for batch upload
-
-# upload all mp4 files in current dir
 <code>
-  set $key =
-  set $accnt =
- for f in *.mp4 ; do curl -X POST  -H "X-Auth-Key: $key" -H "X-Auth-Email: taudas@gmail.com"  -F file=@$f https://api.cloudflare.com/client/v4/accounts/$accnt/stream; done
+# upload all files
+declare -x ACCOUNT=61b784ac9a85d0224b0b7559233cc843
+declare -x KEY=28c082d7202db728339151b217f28298ac9e7
+declare -x EMAIL=taudas@gmail.com
+for f in *.mp4 ; \
+do curl -X POST  -F file=@$f https://api.cloudflare.com/client/v4/accounts/$accnt/stream \
+ -H "X-Auth-Key: $key" \
+ -H "X-Auth-Email: taudas@gmail.com"  ; done
 </code>
 
-Then manage all your files
-Here is the upload script
 And here is the list script
+<code>
+# list all files
+declare -x ACCOUNT=61b784ac9a85d0224b0b7559233cc843
+declare -x KEY=28c082d7202db728339151b217f28298ac9e7
+declare -x EMAIL=taudas@gmail.com
+curl  -s -X GET "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/stream"\
+ -H "X-Auth-Key: $KEY"\
+ -H "X-Auth-Email: $EMAIL"
+
+</code>
+
+
 So now i have a list of uuids
 Use jquery to construct an html fragment
 So now how to publish this? - Cloudflare Pages
@@ -55,7 +74,7 @@ voila
 
 
   </div>
-
+<div><h1><a href="http://danglingganglion.com">You Must Listen to Dangling Ganglion</a></h1></div>
 
 
 
