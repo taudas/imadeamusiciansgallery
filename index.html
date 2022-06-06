@@ -111,7 +111,8 @@ Use jquery to get the part i need
 </code>
 So now i have a list of uuids, let's construct the html fragment
 <code>
- cat allfiles | jq -r '.result[].uid' | sed -e 's#\(.*\)#&lta href="http://danglingganglion.com/?\1">&ltimg width="20%" src="https://videodelivery.net/\1/thumbnails/thumbnail.jpg">&lt/a>#' >links.html
+ cat allfiles | jq -r '.result[].uid' | \
+ sed -e 's#\(.*\)#&lta href="http://danglingganglion.com/?\1">&ltimg width="20%" src="https://videodelivery.net/\1/thumbnails/thumbnail.jpg">&lt/a>#' >links.html
 </code>
 
 So now how to publish this? - Cloudflare Pages
