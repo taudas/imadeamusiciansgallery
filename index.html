@@ -65,21 +65,24 @@ I made a Musicians Gallery for $6
 <div class="column middle" style="background-color:#e7c9a9;">
 <hr style="height:3px;border-width:0;color:#16161d;background-color:#16161d">
 <p>
-I  was looking for a way to present a set of audio files. I’ve been learning a lot about serverless, and I thought this type of web app would be perfect for that.
+I  was looking for a way to present a set of audio files. I’ve been learning a lot about the serverless design pattern, so I thought I would apply that pattern to this problem.
 <p>
 So here is the challenge: Take a set of audio files and present a playable web interface.
 <p>
-I am familiar with Cloudflare Tunnels so I thought I would use Cloudflare Stream for the host. This service consists of two parts - storage and streaming. The storage cost is $5 per kilominute. The streaming cost is $1 per kilominute. So first you establish your content - 1000 minutes of storage for $5/month. Then you enable streaming - 1000 minutes of streaming for $1/month.
+I am familiar with Cloudflare Tunnels so I thought I would use <a href="http://cloudflare.com/Stream/"Cloudflare Stream</a> for the host. This service consists of two parts - storage and streaming.
+The storage cost is $5 per kilominute. The streaming cost is $1 per kilominute.
+So first you establish your content - 1000 minutes of storage for $5/month. Then you enable streaming - 1000 minutes of streaming for $1/month.
 I have 717 minutes stored and I used less than 1000 minutes last month - This cost me $6.
 <p>
+first get your videos together. I have a set of mp3s and some original art. I used ffmpeg to make a set of mp4s with a still image as the video track. (I guess that is an article for another time).
+<p>
+second sign up for the first tier of <a href="http://cloudflare.com/Stream/"Cloudflare Stream</a>. you will get an API Key and and Account Number.
+<p>
+Cloudflare has a web based admin page, but that only enables one upload at a time. they have an api, so here is a bash script for batch upload.
 <pre>
-1) I have a set of mp3s to upload to Cloudflare.
- they have a web based admin page, but that is only one at a time.
- they have an api, so here is a bash script for batch upload
-
-You need your Account Number, API Key, and email address.
+(You need your Account Number, API Key, and email address.)
 <code>
-# upload all files
+# upload all mp4s in current dir
 declare -x ACCOUNT=youraccountnumber
 declare -x KEY=yourapikey
 declare -x EMAIL=youremailaddress
