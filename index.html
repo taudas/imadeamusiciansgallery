@@ -112,22 +112,22 @@ curl -s \
  -H "X-Auth-Key: $KEY" \
  -H "X-Auth-Email: $EMAIL" >allfiles
 </code></pre>
-
-Use jquery to get the part i need
+<p>
+Use jquery to get the part i need<br>
 
 <code>
  cat allfiles | jq -r '.result[].uid'
 </code>
-
-So now i have a list of uuids, let's construct the html fragment - cloudflare provides a thumbnail. i need to use the UUID twice, so time for some sed magic.
+<p>
+So now i have a list of uuids, let's construct the html fragment - cloudflare provides a thumbnail. i need to use the UUID twice, so time for some sed magic.<br>
 
 <code>
  cat allfiles | jq -r '.result[].uid' | \
  sed -e 's#\(.*\)#&lta href="http://danglingganglion.com/?\1">&ltimg width="20%" src="https://videodelivery.net/\1/thumbnails/thumbnail.jpg">&lt/a>#' >links.html
 </code>
 
-
-Then insert the html fragment with the links and thumbnails
+<p>
+Then insert the html fragment with the links and thumbnails<br>
 voila
 
 </div>
