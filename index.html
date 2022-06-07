@@ -79,9 +79,9 @@ I have 717 minutes stored and I used less than 1000 minutes last month - This co
 <p>
 2) Sign up for <a href="https://www.cloudflare.com/products/cloudflare-stream/">Cloudflare Stream</a>. You will get an API Key and and Account Number.
 <p>
-3) Upload your content. Cloudflare has a web based admin page, but that only enables one upload at a time. they have an api, so here is a bash script for batch upload.
+3) Upload your content. Cloudflare has a web based admin page, but that only enables one upload at a time. They have an api, so here is a bash script for batch upload.
 <pre>
-(You need your Account Number, API Key, and email address.)
+You need your Account Number, API Key, and email address.
 <code>
 # upload all mp4s in current dir
 declare -x ACCOUNT=youraccountnumber
@@ -93,15 +93,17 @@ do curl -X POST \
  -H "X-Auth-Key: $KEY" \
  -H "X-Auth-Email: $EMAIL"  ; done
 </code></pre>
-4) Now you have to implement a player. Cloudflare provides an iframe with everything you need. we just need to specify the UUID of the video.
-they also have javascript and react and angular snippets, or you can roll your own player using the api.
+<p>
+4) Now you have to implement a player. Cloudflare provides an iframe with everything you need. We just need to specify the UUID of the video.
+They also have javascript and react and angular snippets, or you can roll your own player using the api.
 Let's use the same design pattern and host our html on <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>.
----
-One page
-First announce your intentions
-Then show the default vid
-
-And here is the list script
+<p>
+Here is the one page web app with simple html and some javascripts. This app has a header, a player, and a set of clickable thumbnails.
+<a href="https://github.com/taudas/imadeamusiciansgallery/wiki/index.html">
+https://github.com/taudas/imadeamusiciansgallery/wiki/index.html</a>
+<p>
+5)  
+And here is the list script used to retrieve data from Cloudflare Stream.
 <pre><code>
 # get a list of all files and properties
 declare -x ACCOUNT=youraccountnumber
@@ -114,22 +116,18 @@ curl -s \
 </code></pre>
 <p>
 Use jquery to get the part i need<br>
-
 <code>
  cat allfiles | jq -r '.result[].uid'
 </code>
 <p>
 So now i have a list of uuids, let's construct the html fragment - cloudflare provides a thumbnail. i need to use the UUID twice, so time for some sed magic.<br>
-
 <code>
  cat allfiles | jq -r '.result[].uid' | \
  sed -e 's#\(.*\)#&lta href="http://danglingganglion.com/?\1">&ltimg width="20%" src="https://videodelivery.net/\1/thumbnails/thumbnail.jpg">&lt/a>#' >links.html
 </code>
-
 <p>
 Then insert the html fragment with the links and thumbnails<br>
 voila
-
 </div>
 
 <div class="column side" style="background-color:#e7c9a9;">
