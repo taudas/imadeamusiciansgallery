@@ -92,7 +92,7 @@ do curl -X POST \
  -F file=@$f https://api.cloudflare.com/client/v4/$ACCOUNT/stream \
  -H "X-Auth-Key: $KEY" \
  -H "X-Auth-Email: $EMAIL"  ; done
-</code>
+</code></pre>
 4) Now you have to implement a player. Cloudflare provides an iframe with everything you need. we just need to specify the UUID of the video.
 they also have javascript and react and angular snippets, or you can roll your own player using the api.
 Let's use the same design pattern and host our html on <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>.
@@ -102,7 +102,7 @@ First announce your intentions
 Then show the default vid
 
 And here is the list script
-<code>
+<pre><code>
 # get a list of all files and properties
 declare -x ACCOUNT=youraccountnumber
 declare -x KEY=yourapikey
@@ -111,12 +111,16 @@ curl -s \
  -X GET "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/stream" \
  -H "X-Auth-Key: $KEY" \
  -H "X-Auth-Email: $EMAIL" >allfiles
-</code>
+</code></pre>
+
 Use jquery to get the part i need
+
 <code>
  cat allfiles | jq -r '.result[].uid'
 </code>
+
 So now i have a list of uuids, let's construct the html fragment - cloudflare provides a thumbnail. i need to use the UUID twice, so time for some sed magic.
+
 <code>
  cat allfiles | jq -r '.result[].uid' | \
  sed -e 's#\(.*\)#&lta href="http://danglingganglion.com/?\1">&ltimg width="20%" src="https://videodelivery.net/\1/thumbnails/thumbnail.jpg">&lt/a>#' >links.html
@@ -125,7 +129,7 @@ So now i have a list of uuids, let's construct the html fragment - cloudflare pr
 
 Then insert the html fragment with the links and thumbnails
 voila
-</pre>
+
 </div>
 
 <div class="column side" style="background-color:#e7c9a9;">
