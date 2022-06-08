@@ -62,7 +62,7 @@ do curl -X POST \
 They also have React and Angular components, or you can roll your own using the Player API. The only required data is the uid of the video.
 Let's use the same design pattern and host our html on <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>.
 <p>
-Here is the commented sourece for a one page web app. This app has a header with title and bandcamp link, a player that uses an iframe and a javascript constructor,
+Here is the commented source for a one page web app. This app has a header with title and bandcamp link, a player that uses an iframe with a javascript constructor,
 and a set of clickable thumbnails that are pregenerated and then included.
 <a href="https://github.com/taudas/imadeamusiciansgallery/wiki/index.html">
 https://github.com/taudas/imadeamusiciansgallery/wiki/index.html</a>
@@ -70,7 +70,7 @@ https://github.com/taudas/imadeamusiciansgallery/wiki/index.html</a>
 5) The tricksy part is generating the html for all the video files. First use the Cloudflare API to get the uids.
 Here is the bash script used to retrieve all the metadata from a Cloudflare Stream account.
 <pre><code>
-# get a list of all files and properties
+# get a list of all properties for all files
 declare -x ACCOUNT=youraccountnumber
 declare -x KEY=yourapikey
 declare -x EMAIL=youremailaddress
@@ -80,12 +80,12 @@ curl -s \
  -H "X-Auth-Email: $EMAIL" >allprops
 </code></pre>
 <p>
-Second use jquery to get just the uids in a randomized list.<br>
+Second use jquery to extract just the uids to a randomized list.<br>
 <code>
 cat allprops | jq -r '.result[].uid' | shuf > alluids
 </code>
 <p>
-Third construct the links.html fragment. There is the main link to select the specified file and the thumbnail provided by Cloudflare.
+Third construct the links.html fragment. There is the main link to select the specified file and link to the thumbnail provided by Cloudflare.
 <br>
 <code>
 cat alluids | \
