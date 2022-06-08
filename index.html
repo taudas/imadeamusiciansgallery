@@ -62,7 +62,8 @@ do curl -X POST \
 They also have React and Angular components, or you can roll your own using the Player API. The only required data is the uid of the video.
 Let's use the same design pattern and host our html on <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>.
 <p>
-Here is the one page web app with simple html and some javascripts. This app has a header, a player, and a set of clickable thumbnails.
+Here is the commented sourece for a one page web app. This app has a header with title and bandcamp link, a player that uses an iframe and a javascript constructor,
+and a set of clickable thumbnails that are pregenerated and then included.
 <a href="https://github.com/taudas/imadeamusiciansgallery/wiki/index.html">
 https://github.com/taudas/imadeamusiciansgallery/wiki/index.html</a>
 <p>
@@ -76,22 +77,22 @@ declare -x EMAIL=youremailaddress
 curl -s \
  -X GET "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT/stream" \
  -H "X-Auth-Key: $KEY" \
- -H "X-Auth-Email: $EMAIL" >allfiles
+ -H "X-Auth-Email: $EMAIL" >allprops
 </code></pre>
 <p>
-Second use jquery to get just the uids<br>
+Second use jquery to get just the uids in a randomized list.<br>
 <code>
-cat allfiles | jq -r '.result[].uid'
+cat allprops | jq -r '.result[].uid' | shuf > alluids
 </code>
 <p>
-So now that I have a list of uids, let's construct the links.html fragment.  I make the main link and Cloudflare provides a link to the thumbnail.
-I need to use the uid twice, so time for some sed magic.<br>
+Third let's construct the links.html fragment.  There is the main link to play the chosen file and Cloudflare provides a link to the thumbnail.
+<br>
 <code>
-cat allfiles | jq -r '.result[].uid' | \
+cat alluids | \
 sed -e 's#\(.*\)#&lta href="http://danglingganglion.com/?\1">&ltimg width="20%" src="https://videodelivery.net/\1/thumbnails/thumbnail.jpg">&lt/a>#' >links.html
 </code>
 <p>
-Finally some javascript to include the html fragment and Voila!<br>
+The generated links.html file is included with some javascript and Voila! -><br>
 </div>
 <div class="column side" style="background-color:#e7c9a9;">
 <hr style="height:3px;border-width:0;color:#16161d;background-color:#16161d">
