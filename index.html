@@ -7,14 +7,14 @@
 <title>I made a Musicians Gallery for $6</title>
 /* simple three column responsive style using flexbox */
 <style>
-* {      box-sizing: border-box;    }
-body {      font-family: "Lucida Serif", Garamond, serif;    }
- .header {      background-color: #e7c9a9;      padding: 10px;      text-align: center;    }
- .row {      display: -webkit-flex;      display: flex;    }
- .column {      padding: 10px;    }
- .column.side {       -webkit-flex: 1;       -ms-flex: 1;       flex: 1;    }
- .column.middle {      -webkit-flex: 6;      -ms-flex: 6;      flex: 6;    }
- .footer {      background-color: #e7c9a9;padding: 10px;      text-align: center;    }
+* { box-sizing: border-box; }
+body { font-family: "Lucida Serif", Garamond, serif; }
+ .header { background-color: #e7c9a9; padding: 10px; text-align: center; }
+ .row { display: -webkit-flex; display: flex; }
+ .column { padding: 10px; }
+ .column.side {  -webkit-flex: 1;  -ms-flex: 1;  flex: 1; }
+ .column.middle { -webkit-flex: 6; -ms-flex: 6; flex: 6; }
+ .footer { background-color: #e7c9a9;padding: 10px; text-align: center; }
  @media (max-width: 600px) { .row { -webkit-flex-direction: column; flex-direction: column;}}
 </style>
 </head>
@@ -55,7 +55,7 @@ for f in *.mp4 ; \
 do curl -X POST \
  -F file=@$f https://api.cloudflare.com/client/v4/$ACCOUNT/stream \
  -H "X-Auth-Key: $KEY" \
- -H "X-Auth-Email: $EMAIL"  ; done
+ -H "X-Auth-Email: $EMAIL" ; done
 </code></pre>
 <p>
 4) Now you have to implement a player. Cloudflare provides an iframe with a fully featured player.
@@ -67,7 +67,7 @@ and a set of clickable thumbnails that are pregenerated and then included.
 <a href="https://github.com/taudas/imadeamusiciansgallery/wiki/index.html">
 https://github.com/taudas/imadeamusiciansgallery/wiki/index.html</a>
 <p>
-5)  The tricksy part is generating the html for all the video files. First use the Cloudflare API to get the uids.
+5) The tricksy part is generating the html for all the video files. First use the Cloudflare API to get the uids.
 Here is the bash script used to retrieve all the metadata from a Cloudflare Stream account.
 <pre><code>
 # get a list of all files and properties
@@ -85,7 +85,7 @@ Second use jquery to get just the uids in a randomized list.<br>
 cat allprops | jq -r '.result[].uid' | shuf > alluids
 </code>
 <p>
-Third let's construct the links.html fragment.  There is the main link to play the chosen file and Cloudflare provides a link to the thumbnail.
+Third construct the links.html fragment. There is the main link to select the specified file and the thumbnail provided by Cloudflare.
 <br>
 <code>
 cat alluids | \
