@@ -42,7 +42,7 @@ I have 717 minutes stored and I used less than 1000 minutes streaming last month
 1) Get your videos together. I started with a set of mp3s and some original art. I used ffmpeg to make a set of mp4s with a still image as the video track.
 (I guess that is an article for another time).
 <p>
-2) Sign up for <a href="https://www.cloudflare.com/products/cloudflare-stream/">Cloudflare Stream</a>. You will get an API Key and and Account Number.
+2) Sign up for <a href="https://www.cloudflare.com/products/cloudflare-stream/" target="_blank" rel="noreferrer">Cloudflare Stream</a>. You will get an API Key and and Account Number.
 <p>
 3) Upload your content. Cloudflare has a web based admin page, but I prefer command line tools. They have an API, so here is a bash script for batch upload.
 <pre>
@@ -61,11 +61,11 @@ do curl -X POST \
 <p>
 4) Now you have to implement a player. Cloudflare provides an iframe with a fully featured player.
 They also have React and Angular components, or you can roll your own using the Player API. The only required data is the uid of the video.
-Let's use the same design pattern and host our html on <a href="https://pages.cloudflare.com/">Cloudflare Pages</a>.
+Let's use the same design pattern and host our html on <a href="https://pages.cloudflare.com/" target="_blank" rel="noreferrer">Cloudflare Pages</a>.
 <p>
 Here is the commented source for a one page web app. This app has a header with title and bandcamp link, a player that uses an iframe with a javascript constructor,
 and a set of clickable thumbnails that are pregenerated and then included.
-<a href="https://github.com/taudas/imadeamusiciansgallery/wiki/index.html">
+<a href="https://github.com/taudas/imadeamusiciansgallery/wiki/index.html" target="_blank" rel="noreferrer">
 https://github.com/taudas/imadeamusiciansgallery/wiki/index.html</a>
 <p>
 5) The tricksy part is generating the html for all the video files. First use the Cloudflare API to get the uids.
