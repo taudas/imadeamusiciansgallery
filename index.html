@@ -68,7 +68,7 @@ and a set of clickable thumbnails that are pregenerated and then included.
 <a href="https://github.com/taudas/imadeamusiciansgallery/wiki/index.html" target="_blank" rel="noreferrer">
 https://github.com/taudas/imadeamusiciansgallery/wiki/index.html</a>
 <p>
-5) The tricksy part is generating the html for all the video files. First use the Cloudflare API to get the uids.
+5) The tricksy part is generating the html for all the video files. First use the Cloudflare API to get all properties.
 Here is the bash script used to retrieve all the metadata from a Cloudflare Stream account.
 <pre><code>
 # get a list of all properties for all files
@@ -86,14 +86,15 @@ Second use jquery to extract just the uids to a randomized list.<br>
 cat allprops | jq -r '.result[].uid' | shuf > alluids
 </code>
 <p>
-Third construct the links.html fragment. There is the main link to select the specified file and link to the thumbnail provided by Cloudflare.
+Third construct the links.html fragment. There is the main link to select the specified file and the link to the thumbnail provided by Cloudflare.
+ I need to use the uid twice so time for some sed magic.
 <br>
 <code>
-cat alluids | \
+cat alluids |
 sed -e 's#\(.*\)#&lta href="http://danglingganglion.com/?\1">&ltimg width="20%" src="https://videodelivery.net/\1/thumbnails/thumbnail.jpg">&lt/a>#' >links.html
 </code>
 <p>
-The generated links.html file is included with some javascript and Voila! -><br>
+The generated links.html file is included into index.html with some javascript and Voila!<br>
 </div>
 <div class="column side" style="background-color:#e7c9a9;">
 <hr style="height:3px;border-width:0;color:#008f70;background-color:#008f70">
