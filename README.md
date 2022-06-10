@@ -1,2 +1,2 @@
-Welcome to my explainer about how <a href="imadeamusiciansgallery.memehalloffame.tv">i made a musicians gallery<a>
+Welcome to my explainer about how <a href="http://imadeamusiciansgallery.memehalloffame.tv/">i made a musicians gallery<a>
 
